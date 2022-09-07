@@ -46,13 +46,17 @@ export const transformWeatherData = (
   weather.wind.speed = Math.round(weather.wind.speed * 3.6);
 
   const next7Days = getNextSevenDays();
-
-  res[1].list.forEach((i: any, index: number) => {
+  console.log('api responce =====>',res[1]);
+  var list1 = res[1].list.slice(0,7)
+  
+  list1.forEach((i: any, index: number) => {
+    console.log('responce for arr ==>',i);
+    
     forecast.push({
       day: next7Days[index],
       temp: {
-        temp_max: kelvinToCelcius(i.temp.max),
-        temp_min: kelvinToCelcius(i.temp.min),
+        temp_max: kelvinToCelcius(i.main.temp_max),
+        temp_min: kelvinToCelcius(i.main.temp_min),
       },
       weather: {
         id: i.weather[0].id,
